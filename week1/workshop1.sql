@@ -99,14 +99,24 @@ CREATE TABLE offices (
 
 CREATE TABLE us_states (
     id SERIAL,
-    name TEXT NOT NULL,
-    abbreviation CHAR(2) NOT NULL,
+    name TEXT UNIQUE NOT NULL,
+    abbreviation CHARACTER(2) UNIQUE NOT NULL,
     PRIMARY KEY (id)
 );
 
 ---
 --- Add foreign key constraints
 ---
+
+-- PRODUCTS
+
+ALTER TABLE products
+ADD CONSTRAINT fk_products_categories 
+FOREIGN KEY (category_id) 
+REFERENCES categories (id);
+
+
+-- TODO create more constraints here...
 
 ALTER TABLE orders
 ADD CONSTRAINT fk_orders_customers 
@@ -123,7 +133,6 @@ ADD CONSTRAINT fk_products_suppliers
 FOREIGN KEY (supplier_id) 
 REFERENCES suppliers (id);
 
--- 
 ALTER TABLE orders_products 
 ADD CONSTRAINT fk_orders_products_orders
 FOREIGN KEY (order_id) 
@@ -134,7 +143,6 @@ ADD CONSTRAINT fk_orders_products_products
 FOREIGN KEY (product_id) 
 REFERENCES products (id);
 
--- 
 ALTER TABLE employees_territories
 ADD CONSTRAINT fk_employees_territories_employees
 FOREIGN KEY (employee_id) 
@@ -149,14 +157,3 @@ ALTER TABLE offices
 ADD CONSTRAINT fk_offices_territories
 FOREIGN KEY (territory_id) 
 REFERENCES territories (id);
-
--- PRODUCTS
-
-ALTER TABLE products
-ADD CONSTRAINT fk_products_categories 
-FOREIGN KEY (category_id) 
-REFERENCES categories (id);
-
-
--- TODO create more constraints here...
-
