@@ -1,3 +1,8 @@
+-- Instructions:
+-- •	Test your code as you go by running the following command from your VS Code integrated terminal:
+-- cat workshop1.sql | docker exec -i pg_container psql
+-- After running this command, refresh or open pgAdmin in your browser at http://localhost:5433 , then navigate to the week1_workshop database 
+
 -- kill other connections
 SELECT pg_terminate_backend(pg_stat_activity.pid)
 FROM pg_stat_activity
