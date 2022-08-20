@@ -4,10 +4,10 @@
 -- zero or more categories, and they want the database to keep track of who is
 -- an expert in what. 
 -- Q: How will you satisfy this new requirement? 
--- A: To satisfy this requirement, we could make a separate table for the different types of categories and then create foreign key pairings and act as the intermediary table.
+-- A: To satisfy this requirement, we could make an intermediate table of foreign key pairs to reference the employees and categories tables.
 
 -- Q: What type of relationship is this? (e.g. 1-1, 1-many, or many-to-many?)
--- A: Each employee can be an expert of multiple categories, and each category can have multiple employees who are listed as an expert, so it's a many-to-many relationship.
+-- A: Each employee can be an expert in multiple categories, and each category can have multiple employees who are listed as an expert, so it's a many-to-many relationship.
 -- Fill in your answer above. 
 
 
@@ -81,7 +81,7 @@ VALUES (1,2), (3,4), (4,3), (4,4), (8,2), (1,8), (1,3), (1,6);
 -- Test your answer in pgAdmin or psql and verify that it worked correctly, then
 -- place it in the blank space below.
 
-DELETE FROM employees_categories;
+TRUNCATE TABLE employees_categories;
 
 -- Bonus Task (optional)
 -- Refer to the new management decision at the top of this file.  

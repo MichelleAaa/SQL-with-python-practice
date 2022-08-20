@@ -183,7 +183,6 @@ JOIN
 categories c ON p.category_id = c.category_id
 ORDER BY p.product_id;
 
-
 -- 3.2
 -- HR wants to do a staff audit across the regions.
 -- They want the region_description, territory_description, employee last_name,
@@ -277,10 +276,11 @@ ORDER BY state_name;
 -- Finally, take the final result set and order by territory_id.
 
 -- NOTE: I had to change it to employees_territories in the subquery. (s added at end of employee.)
+
 SELECT t.territory_description, r.region_description FROM territories t
 JOIN regions r ON t.region_id = r.region_id 
 WHERE t.territory_id NOT IN (SELECT territory_id FROM employees_territories)
-ORDER BY territory_id;
+ORDER BY t.territory_id;
 
 -- 3.5
 -- Management needs a list of all suppliers' and customers' contact information 
