@@ -59,4 +59,17 @@ class Tweet(db.Model):
         backref=db.backref('liked_tweets', lazy=True)
     )
 
+    def __init__(self, content: str, user_id: int):
+        self.content = content
+        self.user_id = user_id
+
+# serializes a Tweet as a simple dictionary with key-value pairs for each column in the tweets database table.
+    def serialize(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'created_at': self.created_at.isoformat(),
+            'user_id': self.user_id
+        }
+
 

@@ -1,0 +1,9 @@
+Before editing models.py, we created a database named twitter (in the week3 folder -- in the terminal):
+
+docker exec -i pg_container psql -c 'CREATE DATABASE twitter;'
+
+Updates are made to the models.py file.
+Afterwards, flask db migrate is ran to generate the new migrations file  in twitter/migrations/versions. 
+
+After the file is generated, we run -- flask db upgrade -- for the upgrade function to run in the new migration file. (In the terminal it will show the creation of tables and the like.)
+
