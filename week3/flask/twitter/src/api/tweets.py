@@ -63,3 +63,15 @@ def delete(id: int):
         # something went wrong :(
 # If the code in the try block causes an error, then instead of the application failing, it will default to the code in the catch block beneath it. In this case, if the prepare and commit of the DELETE query fails for some reason, we will return a JSONified response of False to the client, so that it knows that an error occurred and can handle it appropriately on its end.
         return jsonify(False)
+
+
+@bp.route('/<int:id>/liking_users', methods=['GET'])
+def liking_users(id: int):
+    t = Tweet.query.get_or_404(id)
+    result = []
+    for u in t.liking_users:
+        result.append(u.serialize())
+    return jsonify(result)
+
+
+
