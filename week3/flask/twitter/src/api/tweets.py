@@ -21,12 +21,12 @@ def index():
 # The first argument '/<int:id>' is Flask syntax that defines a route parameter. Specifically, it says that an integer value will be passed into the URL following the URL prefix, resulting in a URL such as: http://localhost:5000/tweets/1, http://localhost:5000/tweets/23, etc.
 # 	This integer value will be stored in a variable named id and made available to the immediately following endpoint function, which in this case is show().
 @bp.route('/<int:id>', methods=['GET'])
-#	In the show() function, we take that id from the route 
+# In the show() function, we take that id from the route 
 def show(id: int):
-    # use the superclass db.Model method that the Tweet model inherited, get_or_404(), to try to GET a record for the given id from the tweets table in our database. The ORM transforms this request into a SELECT query and sends the raw SQL to the database server. 
-    # If no match is found, the get_or_404() method will send a HTTP response to the client with a 404 status code.
+# use the superclass db.Model method that the Tweet model inherited, get_or_404(), to try to GET a record for the given id from the tweets table in our database. The ORM transforms this request into a SELECT query and sends the raw SQL to the database server. 
+# If no match is found, the get_or_404() method will send a HTTP response to the client with a 404 status code.
     t = Tweet.query.get_or_404(id)
-    # If a match is found, then we serialize and jsonify the matching record and send it back to the client.
+# If a match is found, then we serialize and jsonify the matching record and send it back to the client.
     return jsonify(t.serialize())
 
 
@@ -72,6 +72,4 @@ def liking_users(id: int):
     for u in t.liking_users:
         result.append(u.serialize())
     return jsonify(result)
-
-
 

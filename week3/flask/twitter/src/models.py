@@ -24,8 +24,6 @@ class User(db.Model):
         return {
             'id': self.id,
             'username': self.username
-            # 'created_at': self.created_at.isoformat(),
-            # 'user_id': self.user_id
         }
 
 #MANY-TO-MANY RELATIONSHIP (with User and Tweet)

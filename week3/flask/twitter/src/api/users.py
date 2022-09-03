@@ -16,7 +16,7 @@ def index():
     users = User.query.all()
     result = []
     for u in users:
-        result.append(u.serialize())  # 
+        result.append(u.serialize()) 
     return jsonify(result)
 
 @bp.route('/<int:id>', methods=['GET'])
@@ -28,7 +28,6 @@ def show(id: int):
 def create():
     if 'username' not in request.json or 'password' not in request.json or len(request.json['username']) < 3 or len(request.json['password']) < 8:
         return abort(400)
-
     # construct User
     u = User(
         username=request.json['username'],
@@ -56,12 +55,10 @@ def update(id: int):
     u = User.query.get_or_404(id)
     if 'username' not in request.json and 'password' not in request.json:
         return abort(400)
-
     if 'username' in request.json and len(request.json['username']) < 3:
         return abort(400)
     elif 'username' in request.json:
         u.username = request.json['username']
-
     if 'password' in request.json and len(request.json['password']) < 8:
         return abort(400)
     elif 'password' in request.json:
@@ -77,6 +74,6 @@ def update(id: int):
 def liked_tweets(id: int):
     u = User.query.get_or_404(id)
     result = []
-    for u in u.liked_tweets:
-        result.append(u.serialize())
+    for t in u.liked_tweets:
+        result.append(t.serialize())
     return jsonify(result)
